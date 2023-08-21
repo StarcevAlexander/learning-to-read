@@ -1,0 +1,39 @@
+* {
+  font-size: 25px;
+  margin: 0 auto;
+}
+
+.conteiner {
+  max-width: 800px;
+}
+.photo,
+.level,
+.description {
+  display: flex;
+  justify-content: center;
+}
+img {
+  max-width: 320px;
+}
+#title,
+#variants {
+  display: flex;
+}
+#title,
+.level,
+.photo,
+.description {
+  margin-bottom: 30px;
+}
+
+.block {
+  font-size: 70px;
+  display: flex;
+  height: 60px;
+  width: 60px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  border: 2px solid green;
+  background-color: aqua;
+}
