@@ -1,4 +1,4 @@
-let level = 1
+let level = 3
 
 const title = document.getElementById('title')
 const variants = document.getElementById('variants')
