@@ -18,7 +18,7 @@ let part = data[level].element
 let imageName = data[level].imageName
 
 nowLevel.innerText = `Уровень ${level + 1}`
-image.src = '/image/' + imageName
+image.src = 'image/' + imageName
 
 //сюдам попадут переменшанные буквы
 let randomArray = []
