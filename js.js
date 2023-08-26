@@ -6,18 +6,22 @@ class App {
     this.current = 0
     this.selectLetter = null
     this.selectLElement = null
+    this.randomArray = []
     this.title = document.getElementById('title')
     this.variants = document.getElementById('variants')
     this.alphabet = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
 
-    this.data = [{ 'element': 'медведь', 'imageName': '1.jpg' },
-    { 'element': 'дом', 'imageName': '2.jpg' },
-    { 'element': 'стол', 'imageName': '3.jpg' },
-    { 'element': 'мышь', 'imageName': '4.jpg' },
-    { 'element': 'цветок', 'imageName': '5.jpg' },
-    { 'element': 'победa', 'imageName': '0.jpg' },
+    this.data = [
+      { 'element': 'дом', 'imageName': '2.jpg' },
+      { 'element': 'медведь', 'imageName': '1.jpg' },
+      { 'element': 'стол', 'imageName': '3.jpg' },
+      { 'element': 'мышь', 'imageName': '4.jpg' },
+      { 'element': 'цветок', 'imageName': '5.jpg' },
+      { 'element': 'победa', 'imageName': '0.jpg' },
     ];
     this.startPage()
+    this.handleKeyPress
+    document.addEventListener('keydown', (event) => this.handleKeyPress(event));
   }
 
 
@@ -29,7 +33,6 @@ class App {
     let imageName = this.data[this.level].imageName
     image.src = 'image/' + imageName
     //сюдам попадут переменшанные буквы
-    let randomArray = []
     //массив из букв искомого элемента
     this.firstArray = part.split("");
     //массив из букв алфавита, кроме букв первого массива
@@ -37,8 +40,9 @@ class App {
     //перемешаем эти буквы и возбмём первые столько сколько элементов в первом
     this.secondArray = this.secondArray.sort(() => Math.random() - 0.5).slice(0, this.firstArray.length);
     //добавим оба массива в рандомный и перемешаем
-    randomArray.push(...this.firstArray, ...this.secondArray)
-    randomArray.sort(() => Math.random() - 0.5)
+    this.randomArray.push(...this.firstArray, ...this.secondArray)
+    this.randomArray.sort(() => Math.random() - 0.5)
+
     //тут храним искомое слово
     this.firstArray.forEach(element => {
       const elem = document.getElementById('title')
@@ -51,7 +55,7 @@ class App {
     )
 
     //тут храним варианты букв
-    randomArray.forEach(element => {
+    this.randomArray.forEach(element => {
       const elem = document.getElementById('variants')
       const newElement = document.createElement('div');
       newElement.classList.add('block');
@@ -77,7 +81,20 @@ class App {
     }
   }
 
-
+  handleKeyPress(event) {
+    let key = event.key.toLowerCase();
+    if (this.randomArray.includes(key)) {
+      this.selectLetter = key
+      const blockSecondElements = document.querySelectorAll('.block-second');
+      for (let i = 0; i < blockSecondElements.length; i++) {
+        if (blockSecondElements[i].textContent === key) {
+          this.selectLElement = blockSecondElements[i];
+          break;
+        }
+      }
+      this.sravni()
+    }
+  }
   sravni() {
     const blockFirstElements = document.querySelectorAll('.block-first');
     //тут храним какую букву по индексу ищем
@@ -85,10 +102,6 @@ class App {
     //а вот значение буквы по индексу
     if (currentLetter === this.selectLetter) {
       // alert('Верно')
-      console.log(
-        this.firstArray.length
-      );
-      console.log(this.current);
       this.current++
       blockFirstElements.forEach((element, index) => {
         if (index < this.current) {
@@ -101,6 +114,7 @@ class App {
         this.variants.innerHTML = ''
         this.current = 0
         this.level += 1
+        this.randomArray = []
         this.startPage()
       }
     }
