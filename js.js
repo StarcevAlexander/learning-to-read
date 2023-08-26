@@ -1,5 +1,10 @@
 class App {
   constructor() {
+    this.musicOk = new Audio('music/Ok.mp3');
+    this.musicError = new Audio('music/Error.mp3');
+    this.musicLevelUp = new Audio('music/LevelUp.mp3');
+
+
     this.level = 0
     this.firstArray = null
     this.secondArray = null
@@ -102,6 +107,7 @@ class App {
     //а вот значение буквы по индексу
     if (currentLetter === this.selectLetter) {
       // alert('Верно')
+      this.musicOk.play()
       this.current++
       blockFirstElements.forEach((element, index) => {
         if (index < this.current) {
@@ -109,6 +115,7 @@ class App {
         }
       });
       if ((this.current) === this.firstArray.length) {
+        this.musicLevelUp.play()
         alert('Уровень пройден!')
         this.title.innerHTML = ''
         this.variants.innerHTML = ''
@@ -119,6 +126,7 @@ class App {
       }
     }
     else {
+      this.musicError.play()
       //alert('Неверно');
       return
     }
