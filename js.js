@@ -15,6 +15,7 @@ class App {
     { 'element': 'стол', 'imageName': '3.jpg' },
     { 'element': 'мышь', 'imageName': '4.jpg' },
     { 'element': 'цветок', 'imageName': '5.jpg' },
+    { 'element': 'поздравляю, ты победил!', 'imageName': '0.jpg' },
   ];
   this.startPage()
 }
