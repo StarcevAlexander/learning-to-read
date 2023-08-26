@@ -4,6 +4,8 @@
 }
 
 .conteiner {
+  display: flex;
+  flex-direction: column;
   max-width: 800px;
 }
 .photo,
@@ -17,7 +19,9 @@ img {
 }
 #title,
 #variants {
-  display: flex;
+  width: 500px;
+  display: inline-flex;
+  flex-wrap: wrap;
 }
 #title,
 .level,
@@ -36,8 +40,9 @@ img {
   border-radius: 3px;
   border: 2px solid green;
   background-color: aqua;
+  margin-bottom: 10px;
 }
 
-.block-second{
+.block-second {
   background-color: cadetblue;
 }

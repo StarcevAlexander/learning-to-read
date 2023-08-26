@@ -9,19 +9,19 @@ class App {
     this.title = document.getElementById('title')
     this.variants = document.getElementById('variants')
     this.alphabet = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
-    
+
     this.data = [{ 'element': 'медведь', 'imageName': '1.jpg' },
     { 'element': 'дом', 'imageName': '2.jpg' },
     { 'element': 'стол', 'imageName': '3.jpg' },
     { 'element': 'мышь', 'imageName': '4.jpg' },
     { 'element': 'цветок', 'imageName': '5.jpg' },
-    { 'element': 'поздравляю, ты победил!', 'imageName': '0.jpg' },
-  ];
-  this.startPage()
-}
+    { 'element': 'победa', 'imageName': '0.jpg' },
+    ];
+    this.startPage()
+  }
 
 
-startPage() {
+  startPage() {
     const nowLevel = document.getElementById('nowLevel')
     nowLevel.innerText = `Уровень ${this.level + 1}`
     const image = document.getElementById('image')
@@ -39,7 +39,7 @@ startPage() {
     //добавим оба массива в рандомный и перемешаем
     randomArray.push(...this.firstArray, ...this.secondArray)
     randomArray.sort(() => Math.random() - 0.5)
-//тут храним искомое слово
+    //тут храним искомое слово
     this.firstArray.forEach(element => {
       const elem = document.getElementById('title')
       const newElement = document.createElement('div');
@@ -50,7 +50,7 @@ startPage() {
     }
     )
 
-//тут храним варианты букв
+    //тут храним варианты букв
     randomArray.forEach(element => {
       const elem = document.getElementById('variants')
       const newElement = document.createElement('div');
@@ -60,7 +60,7 @@ startPage() {
       elem.appendChild(newElement);
     }
     )
-    
+
     const blockSecondElements = document.querySelectorAll('.block-second');
     blockSecondElements.forEach((element) => {
       element.addEventListener('click', () => {
@@ -69,14 +69,22 @@ startPage() {
         this.sravni();
       });
     });
+    //для финала
+    if (this.level + 1 === this.data.length) {
+      this.variants.innerHTML = ''
+      nowLevel.innerText = 'Поздравляю с прохождением всех уровней!!!'
+      document.getElementById('description').innerHTML = ''
+    }
   }
+
+
   sravni() {
     const blockFirstElements = document.querySelectorAll('.block-first');
     //тут храним какую букву по индексу ищем
     let currentLetter = this.firstArray[this.current]
     //а вот значение буквы по индексу
     if (currentLetter === this.selectLetter) {
-     // alert('Верно')
+      // alert('Верно')
       console.log(
         this.firstArray.length
       );
