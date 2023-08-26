@@ -1,98 +1,105 @@
-let level = 3
-
-const title = document.getElementById('title')
-const variants = document.getElementById('variants')
-const nowLevel = document.getElementById('nowLevel')
-const image = document.getElementById('image')
-
-const alphabet = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
-
-const data = [{ 'element': 'медведь', 'imageName': '1.jpg' },
-{ 'element': 'дом', 'imageName': '2.jpg' },
-{ 'element': 'стол', 'imageName': '3.jpg' },
-{ 'element': 'мышь', 'imageName': '4.jpg' },
-{ 'element': 'цветок', 'imageName': '5.jpg' },
-];
-
-let part = data[level].element
-let imageName = data[level].imageName
-
-nowLevel.innerText = `Уровень ${level + 1}`
-image.src = 'image/' + imageName
-
-//сюдам попадут переменшанные буквы
-let randomArray = []
-//массив из букв искомого элемента
-let firstArray = part.split("");
-//массив из букв алфавита, кроме букв первого массива
-let secondArray = alphabet.filter(letter => !firstArray.includes(letter));
-//перемешаем эти буквы и возбмём первые столько сколько элементов в первом
-secondArray = secondArray.sort(() => Math.random() - 0.5).slice(0, firstArray.length);
-//добавим оба массива в рандомный и перемешаем
-randomArray.push(...firstArray, ...secondArray)
-randomArray.sort(() => Math.random() - 0.5)
-
-firstArray.forEach(element => {
-  const elem = document.getElementById('title')
-  const newElement = document.createElement('div');
-  newElement.classList.add('block');
-  newElement.classList.add('block-first');
-  newElement.innerHTML = element;
-  elem.appendChild(newElement);
+class App {
+  constructor() {
+    this.level = 0
+    this.firstArray = null
+    this.secondArray = null
+    this.current = 0
+    this.selectLetter = null
+    this.selectLElement = null
+    this.title = document.getElementById('title')
+    this.variants = document.getElementById('variants')
+    this.alphabet = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
+    
+    this.data = [{ 'element': 'медведь', 'imageName': '1.jpg' },
+    { 'element': 'дом', 'imageName': '2.jpg' },
+    { 'element': 'стол', 'imageName': '3.jpg' },
+    { 'element': 'мышь', 'imageName': '4.jpg' },
+    { 'element': 'цветок', 'imageName': '5.jpg' },
+  ];
+  this.startPage()
 }
-)
-randomArray.forEach(element => {
-  const elem = document.getElementById('variants')
-  const newElement = document.createElement('div');
-  newElement.classList.add('block');
-  newElement.classList.add('block-second');
-  newElement.innerHTML = element;
-  elem.appendChild(newElement);
-}
-)
 
 
-const blockSecondElements = document.querySelectorAll('.block-second');
-const blockFirstElements = document.querySelectorAll('.block-first');
+startPage() {
+    const nowLevel = document.getElementById('nowLevel')
+    nowLevel.innerText = `Уровень ${this.level + 1}`
+    const image = document.getElementById('image')
+    let part = this.data[this.level].element
+    let imageName = this.data[this.level].imageName
+    image.src = 'image/' + imageName
+    //сюдам попадут переменшанные буквы
+    let randomArray = []
+    //массив из букв искомого элемента
+    this.firstArray = part.split("");
+    //массив из букв алфавита, кроме букв первого массива
+    this.secondArray = this.alphabet.filter(letter => !this.firstArray.includes(letter));
+    //перемешаем эти буквы и возбмём первые столько сколько элементов в первом
+    this.secondArray = this.secondArray.sort(() => Math.random() - 0.5).slice(0, this.firstArray.length);
+    //добавим оба массива в рандомный и перемешаем
+    randomArray.push(...this.firstArray, ...this.secondArray)
+    randomArray.sort(() => Math.random() - 0.5)
+//тут храним искомое слово
+    this.firstArray.forEach(element => {
+      const elem = document.getElementById('title')
+      const newElement = document.createElement('div');
+      newElement.classList.add('block');
+      newElement.classList.add('block-first');
+      newElement.innerHTML = element;
+      elem.appendChild(newElement);
+    }
+    )
 
-//тут храним какую букву по индексу ищем
-let current = 0
-
-//nen храним выбранную букву
-let selectLetter
-let selectLElement
-
-
-blockSecondElements.forEach((element) => {
-  element.addEventListener('click', () => {
-    selectLetter = element.innerText;
-    selectLElement = element
-    sravni()
-  }
-  )
-})
-
-
-function sravni() {
-  let currentLetter = firstArray[current]
-  //а вот значение буквы по индексу
-  if (currentLetter === selectLetter) {
-    alert('Верно')
-    console.log(
-      firstArray.length
-    );
-    console.log(current);
-    current++
-    blockFirstElements.forEach((element, index) => {
-      if (index < current) {
-        element.style.backgroundColor = 'green';
-      }
+//тут храним варианты букв
+    randomArray.forEach(element => {
+      const elem = document.getElementById('variants')
+      const newElement = document.createElement('div');
+      newElement.classList.add('block');
+      newElement.classList.add('block-second');
+      newElement.innerHTML = element;
+      elem.appendChild(newElement);
+    }
+    )
+    
+    const blockSecondElements = document.querySelectorAll('.block-second');
+    blockSecondElements.forEach((element) => {
+      element.addEventListener('click', () => {
+        this.selectLetter = element.innerText;
+        this.selectLElement = element;
+        this.sravni();
+      });
     });
-    if ((current) === firstArray.length) { alert('Уровень пройден!') }
   }
-  else {
-    alert('Неверно');
-    return
+  sravni() {
+    const blockFirstElements = document.querySelectorAll('.block-first');
+    //тут храним какую букву по индексу ищем
+    let currentLetter = this.firstArray[this.current]
+    //а вот значение буквы по индексу
+    if (currentLetter === this.selectLetter) {
+     // alert('Верно')
+      console.log(
+        this.firstArray.length
+      );
+      console.log(this.current);
+      this.current++
+      blockFirstElements.forEach((element, index) => {
+        if (index < this.current) {
+          element.style.backgroundColor = 'green';
+        }
+      });
+      if ((this.current) === this.firstArray.length) {
+        alert('Уровень пройден!')
+        this.title.innerHTML = ''
+        this.variants.innerHTML = ''
+        this.current = 0
+        this.level += 1
+        this.startPage()
+      }
+    }
+    else {
+      //alert('Неверно');
+      return
+    }
+    this.selectLElement.style.display = 'none'; // добавляем изменение заднего фона на зеленый
   }
-  selectLElement.style.display = 'none'; // добавляем изменение заднего фона на зеленый
 }
+(new App())
