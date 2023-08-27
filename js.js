@@ -3,8 +3,6 @@ class App {
     this.musicOk = new Audio('music/Ok.mp3');
     this.musicError = new Audio('music/Error.mp3');
     this.musicLevelUp = new Audio('music/LevelUp.mp3');
-
-
     this.level = 0
     this.firstArray = null
     this.secondArray = null
@@ -17,13 +15,59 @@ class App {
     this.alphabet = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
 
     this.data = [
-      { 'element': 'дом', 'imageName': '2.jpg' },
-      { 'element': 'медведь', 'imageName': '1.jpg' },
-      { 'element': 'стол', 'imageName': '3.jpg' },
-      { 'element': 'мышь', 'imageName': '4.jpg' },
-      { 'element': 'цветок', 'imageName': '5.jpg' },
-      { 'element': 'победa', 'imageName': '0.jpg' },
+      { 'element': 'мама', 'imageName': '1.jpg' },
+      { 'element': 'папа', 'imageName': '2.jpg' },
+      { 'element': 'дом', 'imageName': '3.jpg' },
+      { 'element': 'школа', 'imageName': '4.jpg' },
+      { 'element': 'книга', 'imageName': '5.jpg' },
+      { 'element': 'мяч', 'imageName': '6.jpg' },
+      { 'element': 'кот', 'imageName': '7.jpg' },
+      { 'element': 'собака', 'imageName': '8.jpg' },
+      { 'element': 'цветок', 'imageName': '9.jpg' },
+      { 'element': 'друзья', 'imageName': '10.jpg' },
+      { 'element': 'семья', 'imageName': '11.jpg' },
+      { 'element': 'море', 'imageName': '12.jpg' },
+      { 'element': 'лес', 'imageName': '13.jpg' },
+      { 'element': 'зима', 'imageName': '14.jpg' },
+      { 'element': 'лето', 'imageName': '15.jpg' },
+      { 'element': 'осень', 'imageName': '16.jpg' },
+      { 'element': 'весна', 'imageName': '17.jpg' },
+      { 'element': 'солнце', 'imageName': '18.jpg' },
+      { 'element': 'луна', 'imageName': '19.jpg' },
+      { 'element': 'звезда', 'imageName': '20.jpg' },
+      { 'element': 'дождь', 'imageName': '21.jpg' },
+      { 'element': 'снег', 'imageName': '22.jpg' },
+      { 'element': 'ветер', 'imageName': '23.jpg' },
+      { 'element': 'трава', 'imageName': '24.jpg' },
+      { 'element': 'река', 'imageName': '25.jpg' },
+      { 'element': 'гора', 'imageName': '26.jpg' },
+      { 'element': 'птица', 'imageName': '27.jpg' },
+      { 'element': 'рыба', 'imageName': '28.jpg' },
+      { 'element': 'яблоко', 'imageName': '29.jpg' },
+      { 'element': 'морковь', 'imageName': '30.jpg' },
+      { 'element': 'молоко', 'imageName': '31.jpg' },
+      { 'element': 'хлеб', 'imageName': '32.jpg' },
+      { 'element': 'соль', 'imageName': '33.jpg' },
+      { 'element': 'сахар', 'imageName': '34.jpg' },
+      { 'element': 'масло', 'imageName': '35.jpg' },
+      { 'element': 'каша', 'imageName': '36.jpg' },
+      { 'element': 'суп', 'imageName': '37.jpg' },
+      { 'element': 'пицца', 'imageName': '38.jpg' },
+      { 'element': 'мороженое', 'imageName': '39.jpg' },
+      { 'element': 'печенье', 'imageName': '40.jpg' },
+      { 'element': 'машина', 'imageName': '41.jpg' },
+      { 'element': 'автобус', 'imageName': '42.jpg' },
+      { 'element': 'велосипед', 'imageName': '43.jpg' },
+      { 'element': 'самолет', 'imageName': '44.jpg' },
+      { 'element': 'корабль', 'imageName': '45.jpg' },
+      { 'element': 'гном', 'imageName': '46.jpg' },
+      { 'element': 'комната', 'imageName': '47.jpg' },
+      { 'element': 'окно', 'imageName': '48.jpg' },
+      { 'element': 'дверь', 'imageName': '49.jpg' },
+      { 'element': 'стол', 'imageName': '50.jpg' },
+      { 'element': 'победа', 'imageName': '0.jpg' },
     ];
+
     this.startPage()
     this.handleKeyPress
     document.addEventListener('keydown', (event) => this.handleKeyPress(event));
