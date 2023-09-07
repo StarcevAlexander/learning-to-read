@@ -77,7 +77,7 @@ class App {
     const nowLevel = document.getElementById('nowLevel')
     nowLevel.innerText = `Уровень ${this.level + 1}`
     const levels = document.getElementById('Levels')
-    levels.innerText = `из ${this.data.length - 1}`
+    levels.innerText = `/${this.data.length - 1}`
 
     const image = document.getElementById('image')
     let part = this.data[this.level].element
