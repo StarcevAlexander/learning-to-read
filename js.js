@@ -73,10 +73,12 @@ class App {
     document.addEventListener('keydown', (event) => this.handleKeyPress(event));
   }
 
-
   startPage() {
     const nowLevel = document.getElementById('nowLevel')
     nowLevel.innerText = `Уровень ${this.level + 1}`
+    const levels = document.getElementById('Levels')
+    levels.innerText = `из ${this.data.length - 1}`
+
     const image = document.getElementById('image')
     let part = this.data[this.level].element
     let imageName = this.data[this.level].imageName
@@ -127,6 +129,7 @@ class App {
       this.variants.innerHTML = ''
       nowLevel.innerText = 'Поздравляю с прохождением всех уровней!!!'
       document.getElementById('description').innerHTML = ''
+      levels.style.display = 'none'
     }
   }
 
